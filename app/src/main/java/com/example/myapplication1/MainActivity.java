@@ -1,66 +1,95 @@
 package com.example.myapplication1;
 
+
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean isOn = true;
-    private int mode = 1;
-    private TextView tvmode,tvtemp;
-
-    private int temp;
-
+    private int num1, num2;
+    private TextView resultView, num1View, num2View;
+    private Button addButton, subtractButton, multiplyButton, divideButton, randomizeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tvmode = findViewById(R.id.tvmode);
-        temp = 24;
-        tvtemp=findViewById(R.id.tvTemp);
 
+        num1View = findViewById(R.id.num1View);
+        num2View = findViewById(R.id.num2View);
+        resultView = findViewById(R.id.resultView);
+        addButton = findViewById(R.id.addButton);
+        subtractButton = findViewById(R.id.subtractButton);
+        multiplyButton = findViewById(R.id.multiplyButton);
+        divideButton = findViewById(R.id.divideButton);
+        randomizeButton = findViewById(R.id.randomizeButton);
 
+        generateRandomNumbers();
 
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int result = num1 + num2;
+                resultView.setText("Result: " + result);
+            }
+        });
+
+        subtractButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int result = num1 - num2;
+                resultView.setText("Result: " + result);
+            }
+        });
+
+        multiplyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int result = num1 * num2;
+                resultView.setText("Result: " + result);
+            }
+        });
+
+        divideButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (num2 != 0) {
+                    double result = (double) num1 / num2;
+                    resultView.setText("Result: " + result);
+                } else {
+                    resultView.setText("Can't divide by zero!");
+                }
+            }
+        });
+
+        randomizeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generateRandomNumbers();
+            }
+        });
     }
 
+    private void generateRandomNumbers() {
+        Random random = new Random();
+        num1 = random.nextInt(10);
+        num2 = random.nextInt(10);
 
-    public void checkMode(View view) {
-        if (isOn&&mode==1) {
-            mode = 2;
-
-            tvmode.setText("heat");
-        } else {
-            mode = 1;
-
-            tvmode.setText("cool");
-        }
-    }
-    public void checkstatus(View view) {
-        if (isOn) {
-            isOn = false;
-        } else {
-            isOn = true;
-        }
-    }
-
-    public void m1(View view) {
-        if (  isOn&&temp > 16 ) {
-            temp--;
-            tvtemp.setText(String.valueOf(temp));
-        }
-    }
-    public void pu1(View view) {
-        if (  isOn&&temp < 30 ) {
-            temp++;
-            tvtemp.setText(String.valueOf(temp));
-        }
+        num1View.setText(String.valueOf(num1));
+        num2View.setText(String.valueOf(num2));
+        resultView.setText("Result:");
     }
 }
+
+
+
+
+
+
