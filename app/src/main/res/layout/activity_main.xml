@@ -10,7 +10,7 @@
         android:id="@+id/num1View"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="num1"
+        android:text="Num1"
         android:textSize="24sp"
         android:layout_gravity="center_horizontal"/>
 
@@ -18,7 +18,7 @@
         android:id="@+id/num2View"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="num2"
+        android:text="Num2"
         android:textSize="24sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"/>
