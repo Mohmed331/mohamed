@@ -2,94 +2,48 @@ package com.example.myapplication1;
 
 
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
-import java.util.Random;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int num1, num2;
-    private TextView resultView, num1View, num2View;
-    private Button addButton, subtractButton, multiplyButton, divideButton, randomizeButton;
+    private ImageView imageView;
+    private ImageButton nextButton, prevButton;
+
+
+    private int[] images = {
+            R.drawable.im1,
+            R.drawable.im2,
+            R.drawable.im3,
+            R.drawable.im4
+    };
+
+    private int currentIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        num1View = findViewById(R.id.num1View);
-        num2View = findViewById(R.id.num2View);
-        resultView = findViewById(R.id.resultView);
-        addButton = findViewById(R.id.addButton);
-        subtractButton = findViewById(R.id.subtractButton);
-        multiplyButton = findViewById(R.id.multiplyButton);
-        divideButton = findViewById(R.id.divideButton);
-        randomizeButton = findViewById(R.id.randomizeButton);
+        imageView = findViewById(R.id.imageView);
+        nextButton = findViewById(R.id.nextButton);
+        prevButton = findViewById(R.id.prevButton);
 
-        generateRandomNumbers();
 
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int result = num1 + num2;
-                resultView.setText("Result: " + result);
-            }
+        nextButton.setOnClickListener(v -> {
+            currentIndex = (currentIndex + 1) % images.length;
+            imageView.setImageResource(images[currentIndex]);
         });
 
-        subtractButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int result = num1 - num2;
-                resultView.setText("Result: " + result);
-            }
+
+        prevButton.setOnClickListener(v -> {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            imageView.setImageResource(images[currentIndex]);
+
         });
-
-        multiplyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int result = num1 * num2;
-                resultView.setText("Result: " + result);
-            }
-        });
-
-        divideButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (num2 != 0) {
-                    double result = (double) num1 / num2;
-                    resultView.setText("Result: " + result);
-                } else {
-                    resultView.setText("Can't divide by zero!");
-                }
-            }
-        });
-
-        randomizeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                generateRandomNumbers();
-            }
-        });
-    }
-
-    private void generateRandomNumbers() {
-        Random random = new Random();
-        num1 = random.nextInt(10);
-        num2 = random.nextInt(10);
-
-        num1View.setText(String.valueOf(num1));
-        num2View.setText(String.valueOf(num2));
-        resultView.setText("Result:");
     }
 }
-
-
-
-
-
-

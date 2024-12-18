@@ -4,76 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/num1View"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Num1"
-        android:textSize="24sp"
-        android:layout_gravity="center_horizontal"/>
-
-    <TextView
-        android:id="@+id/num2View"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Num2"
-        android:textSize="24sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"/>
-
-
-    <TextView
-        android:id="@+id/resultView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Result"
-        android:textSize="24sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"/>
-
+    <ImageView
+        android:layout_width="300dp"
+        android:id="@+id/imageView"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/im1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="16dp">
 
-        <Button
-            android:id="@+id/addButton"
+        <ImageButton
+            android:id="@+id/prevButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+"
-            android:layout_margin="8dp"/>
 
-        <Button
-            android:id="@+id/subtractButton"
+            android:src="@mipmap/left"/>
+
+        <ImageButton
+            android:id="@+id/nextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
-            android:layout_margin="8dp"/>
+            android:layout_marginStart="16dp"
 
-        <Button
-            android:id="@+id/multiplyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="×"
-            android:layout_margin="8dp"/>
-
-        <Button
-            android:id="@+id/divideButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="÷"
-            android:layout_margin="8dp"/>
+            android:src="@mipmap/right"/>
     </LinearLayout>
-
-
-    <Button
-        android:id="@+id/randomizeButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Generate Random Numbers"
-        android:layout_marginTop="16dp"/>
 </LinearLayout>
